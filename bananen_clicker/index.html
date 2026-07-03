@@ -23,12 +23,27 @@
                 color: rgb(0, 0, 0);
             } button {
                 cursor: pointer;
+                transition: transform 100ms;
+                transition-timing-function: ease-out;
+                /*
+                animation-name: speen;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                */
+            } button:hover {
+                transform: scale(1.1);
             } #beta {
                 color: #ff0000;
             } #score {
                 font-size: 50px;
             } #bob_dialouge {
                 font-size: 30px;
+            }
+            
+            @keyframes speen {
+                0% {transform: rotate(0);}
+                50% {transform: rotate(180);}
+                100% {transform: rotate(0);}
             }
         </style>
     </head>
@@ -60,6 +75,8 @@
             <p>nutzlos</p>
             <button id="s5">(Kostet 500 Bananen) BananenGPT ©®™</button><br>
         </div><br>
+        
+        <p id="cookie-id">error cookie</p>
 
         <script src="data/main.js"></script>
     </body>
