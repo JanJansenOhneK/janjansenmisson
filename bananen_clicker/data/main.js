@@ -5,14 +5,19 @@
 
 const stylesheet = document.getElementById("stylesheet").sheet
 const button = document.getElementById("button")
-const scoretext = document.getElementById("score")
+const scoretext = document.getElementById("data.bananen")
 const bpctext = document.getElementById("bpc")
-const bpstext = document.getElementById("bps")
+const bpstext = document.getElementById("data.bps")
 const cookietext = document.getElementById("cookie-text")
 const storediv = document.getElementsByClassName("storediv")
-let score = 0
-let click_modifier = 1
-let bps = 0
+
+let data = {
+    bananen: 0,
+    bpc: 1,
+    bps: 0
+}
+
+console.log(data.bpc)
 
 function deleteCookie() {
     document.cookie = "username=;"
@@ -39,9 +44,9 @@ function checkCookie() {
     let username = getCookie("username");
     if (username != "") {
         console.log("user ist zurück");
-        score = Number(getCookie("bananen"));
-        click_modifier = Number(getCookie("bpc"));
-        bps = Number(getCookie("bps"));
+        data.bananen = Number(getCookie("bananen"));
+        data.bpc = Number(getCookie("bpc"));
+        data.bps = Number(getCookie("bps"));
     } else {
         console.log("neuer user");
         setCookie("username","user");
@@ -54,47 +59,47 @@ function checkCookie() {
 checkCookie()
 
 function loop() {
-    scoretext.textContent = score.toString();
+    data.bananentext.textContent = data.bananen.toString();
     //cookietext.textContent = "cookie: " + document.cookie.toString();
-    bpctext.textContent = click_modifier.toString() + " Bananen pro Click";
-    bpstext.textContent = bps.toString() + " Bananen pro Sekunde";
-    setCookie("bananen",score)
-    setCookie("bpc",click_modifier)
-    setCookie("bps",bps)
+    bpctext.textContent = data.bpc.toString() + " Bananen pro Click";
+    data.bpstext.textContent = data.bps.toString() + " Bananen pro Sekunde";
+    setCookie("bananen",data.bananen.toString())
+    setCookie("bpc",data.bpc.toString())
+    setCookie("bps",data.bps.toString())
 }
 function clicked() {
-    score += click_modifier
+    data.bananen += data.bpc
 }
 function bpsfunc() {
-    score += bps
+    data.bananen += data.bps
 }
 
 setInterval(loop,1)
-setInterval(bpsfunc,1000)
+setInterval(data.bpsfunc,1000)
 button.onclick = clicked
 
 document.getElementById("s1").onclick = function() {
-    if (score >= 30) {
-        score -= 30
-        click_modifier += 1
+    if (data.bananen >= 30) {
+        data.bananen -= 30
+        data.bpc += 1
     }
 }
 document.getElementById("s2").onclick = function() {
-    if (score >= 10) {
-        score -= 10
-        bps += 1
+    if (data.bananen >= 10) {
+        data.bananen -= 10
+        data.bps += 1
     }
 }
 document.getElementById("s3").onclick = function() {
-    if (score >= 100) {
-        score -= 100
+    if (data.bananen >= 100) {
+        data.bananen -= 100
         stylesheet.cssRules[0].style.backgroundImage = "url('data/bananen_bg.webp')"
         document.getElementById("s3").remove()
     }
 }
 document.getElementById("s4").onclick = function() {
-    if (score >= 300) {
-        score -= 300
+    if (data.bananen >= 300) {
+        data.bananen -= 300
         button.firstChild.src = "data/regenbogenbanane.png"
         document.getElementById("s4").remove()
     }
