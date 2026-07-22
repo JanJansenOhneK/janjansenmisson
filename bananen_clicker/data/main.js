@@ -19,53 +19,53 @@ let data = {
 
 console.log(data.bpc)
 
-function deleteCookie() {
-    document.cookie = "username=;"
-}
+//function deleteCookie() {
+//    document.cookie = "username=;"
+//}
 
-function setCookie(cname, cvalue) {
-    document.cookie = cname + "=" + cvalue + ";";
-}
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-function checkCookie() {
-    let username = getCookie("username");
-    if (username != "") {
-        console.log("user ist zurück");
-        data.bananen = Number(getCookie("bananen"));
-        data.bpc = Number(getCookie("bpc"));
-        data.bps = Number(getCookie("bps"));
-    } else {
-        console.log("neuer user");
-        setCookie("username","user");
-        setCookie("bananen","0");
-        setCookie("bpc","1");
-        setCookie("bps","0");
-    }
-}
+//function setCookie(cname, cvalue) {
+//    document.cookie = cname + "=" + cvalue + ";";
+//}
+//function getCookie(cname) {
+//    let name = cname + "=";
+//    let ca = document.cookie.split(';');
+//    for(let i = 0; i < ca.length; i++) {
+//        let c = ca[i];
+//        while (c.charAt(0) == ' ') {
+//            c = c.substring(1);
+//        }
+//        if (c.indexOf(name) == 0) {
+//            return c.substring(name.length, c.length);
+//        }
+//    }
+//    return "";
+//}
+//function checkCookie() {
+//    let username = getCookie("username");
+//   if (username != "") {
+//        console.log("user ist zurück");
+//        data.bananen = Number(getCookie("bananen"));
+//        data.bpc = Number(getCookie("bpc"));
+//        data.bps = Number(getCookie("bps"));
+//    } else {
+//        console.log("neuer user");
+//        setCookie("username","user");
+//        setCookie("bananen","0");
+//        setCookie("bpc","1");
+//        setCookie("bps","0");
+//    }
+//}
 
-checkCookie()
+//checkCookie()
 
 function loop() {
     data.bananentext.textContent = data.bananen.toString();
     //cookietext.textContent = "cookie: " + document.cookie.toString();
     bpctext.textContent = data.bpc.toString() + " Bananen pro Click";
     data.bpstext.textContent = data.bps.toString() + " Bananen pro Sekunde";
-    setCookie("bananen",data.bananen.toString())
-    setCookie("bpc",data.bpc.toString())
-    setCookie("bps",data.bps.toString())
+    //setCookie("bananen",data.bananen.toString())
+    //setCookie("bpc",data.bpc.toString())
+    //setCookie("bps",data.bps.toString())
 }
 function clicked() {
     data.bananen += data.bpc
